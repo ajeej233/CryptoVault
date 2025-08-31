@@ -1,4 +1,8 @@
 jdk:
-  - openjdk11
+  - openjdk11  # Use OpenJDK 11 for builds
+
 build:
-  skip: true
+  skip: true  # Skips the build process
+
+publish:
+  skip: true  # Skips publishing to JitPack
