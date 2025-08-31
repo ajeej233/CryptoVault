@@ -1,8 +1,13 @@
-jdk:
-  - openjdk11  # Use OpenJDK 11 for builds
+jdk: openjdk11
 
-build:
-  skip: true  # Skips the build process
+before_install:
+  - echo "SKIPPING BUILD - USING PRE-BUILT AAR FILE"
+  - mkdir -p build/libs
+  - find . -name "*.aar" -exec cp {} build/libs/ \;
+  - echo "AAR files copied:"
+  - ls -la build/libs/
 
-publish:
-  skip: true  # Skips publishing to JitPack
+install:
+  - echo "Installation complete - using pre-built AAR"
+
+build: off
