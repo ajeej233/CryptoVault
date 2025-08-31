@@ -4,6 +4,8 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'com.google.protobuf'
+    id 'maven-publish'
+
 
 }
 
@@ -20,6 +22,12 @@ android {
     buildFeatures {
         buildConfig true
     }
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -32,6 +40,18 @@ android {
     }
     kotlinOptions {
         jvmTarget = '11'
+    }
+}
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.ajeej233'
+                artifactId = 'CryptoVault'
+                version = '1.0.0'
+            }
+        }
     }
 }
 protobuf {

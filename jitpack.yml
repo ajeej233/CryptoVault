@@ -1,16 +1,19 @@
-jdk: openjdk11
+jdk: openjdk17
 
 before_install:
-  - echo "COMPLETELY SKIPPING BUILD PROCESS"
-  - rm -f build.gradle settings.gradle gradle.properties 2>/dev/null || true
-  - rm -rf app/ buildSrc/ 2>/dev/null || true
-  - mkdir -p build/libs
-  - find . -name "*.aar" -exec cp {} build/libs/ \;
-  - echo "AAR files in build/libs:"
-  - ls -la build/libs/
+  - sdk install java 17.0.10-tem
+  - sdk use java 17.0.10-tem
+  - export JAVA_HOME="$HOME/.sdkman/candidates/java/current"
+
+android:
+  components:
+    - platform-tools
+    - build-tools-34.0.0
+    - android-34
+
+build:
+  commands:
+    - ./gradlew clean :library:assembleRelease :library:generatePomFileForReleasePublication
 
 install:
-  - echo "Direct AAR installation - no build performed"
-  - exit 0
-
-build: off
+  - ./gradlew :library:publishReleasePublicationToMavenLocal -Pgroup=com.github.ajeej233 -Pversion=$VERSION
