@@ -1,0 +1,9 @@
+// library/src/main/proto/user_preferences.proto
+syntax = "proto3";
+
+option java_package = "com.abotlogix.cryptovault.datastore";
+option java_multiple_files = true;
+
+message UserPreferences {
+  map<string, string> encrypted_data = 1;
+}
