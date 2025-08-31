@@ -1,2 +1,5 @@
-java:
-  version: openjdk11
+jdk:
+  - openjdk11
+
+build:
+  skip: true
