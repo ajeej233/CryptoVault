@@ -1,13 +1,16 @@
 jdk: openjdk11
 
 before_install:
-  - echo "SKIPPING BUILD - USING PRE-BUILT AAR FILE"
+  - echo "COMPLETELY SKIPPING BUILD PROCESS"
+  - rm -f build.gradle settings.gradle gradle.properties 2>/dev/null || true
+  - rm -rf app/ buildSrc/ 2>/dev/null || true
   - mkdir -p build/libs
   - find . -name "*.aar" -exec cp {} build/libs/ \;
-  - echo "AAR files copied:"
+  - echo "AAR files in build/libs:"
   - ls -la build/libs/
 
 install:
-  - echo "Installation complete - using pre-built AAR"
+  - echo "Direct AAR installation - no build performed"
+  - exit 0
 
 build: off
