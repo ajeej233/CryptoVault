@@ -38,8 +38,9 @@ android {
 }
 
 dependencies {
-    implementation project(':library') // Import your library module
+//    implementation project(':library') // Import your library module
 //    implementation 'com.github.ajeej233:cryptovault:v1.0.1'
+    implementation 'com.github.ajeej233:cryptovault:v1.0.6'
 
     implementation libs.androidx.core.ktx
     implementation libs.androidx.appcompat
